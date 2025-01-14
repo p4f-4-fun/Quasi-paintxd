@@ -151,7 +151,7 @@ const animatedResetPaintBoard = () => {
     const containerElement = document.querySelector(".paint-container");
 
     const opacityBase = parseFloat(containerElement.dataset.opacityBase);
-    const opacityFadeDuration = 20; // ms
+    const opacityFadeDuration = 35; // ms
     const opacityStep = 0.2;
 
     // Firstly - reset block elements to base .paint-container color
