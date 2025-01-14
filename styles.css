@@ -56,31 +56,25 @@ main {
 .paint-color-picker {
     align-items: center;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
     height: 65vh;
-    margin: 0 auto;
+    justify-content: space-evenly;
     left: 15vw;
     position: absolute;
     top: 15vh;
 }
 
-.paint-reset::before {
-    display: block;
-    content: "new";
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);   
-}
 .paint-reset {
+    align-items: center;
     aspect-ratio: 1/1;
     background-color: var(--base-paint-container-bg-color);
     border-radius: 9999px;
     box-shadow: 0px 0px 2px 0px rgba(0,0,0, 0.25);
     color: var(--base-font-color);
     cursor: pointer;
+    display: flex;
     height: 125px;
+    justify-content: center;
     opacity: 0.95;
     position: relative;
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -93,8 +87,8 @@ main {
     transform: scale(1.25) rotateZ(360deg);
 }
 .paint-reset:focus-visible {
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.25);
     border: 10px solid var(--base-font-color);
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.25);
     opacity: 1;
     outline: none;
     transform: scale(1.25) rotateZ(360deg);
@@ -151,27 +145,32 @@ main {
     background-color: var(--base-paint-container-bg-color);
     content: "";
     display: block;
-    height: 100%;
+    height: 900px;
     left: 0;
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 900px;
     z-index: -1;
 }
 .paint-container {
+    align-content: start;
     aspect-ratio: 1/1;
     clip-path: circle(50%);
+    cursor: pointer;
     display: flex;
     flex-wrap: wrap;
-    cursor: pointer;
     height: 900px;
-    margin: 0 auto;
+    justify-content: start;
     opacity: 0.8;
-    place-content: start;
+    position: relative;
     width: 900px;
 }
 .paint-container.cursor-paint {
-    cursor: crosshair !important;
+    /* 
+     * Cursor paint by icons8
+     * <a target="_blank" href="https://icons8.com/icon/1059/paint">Paint</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    */
+    cursor: url("./assets/icons8-cursorpaint.png") 0 50, crosshair !important;
 }
 
 .block {
@@ -181,7 +180,6 @@ main {
     border: none !important;
     height: 10px;
     outline: none !important;
-    transition: background-color 0.025s ease;
     width: 10px;
 }
 
@@ -194,7 +192,8 @@ main {
     height: 100%;
     width: 100%;
 }
-.animatedDot {
+
+.animated-dot {
     aspect-ratio: 1/1;
     backdrop-filter: blur(5px);
     background: linear-gradient(to top right, rgba(var(--base-font-color-NoAlpha), 0.75), rgba(var(--base-background-darkColor), 0.5));
@@ -204,18 +203,13 @@ main {
     top: 0;
     z-index: -1;
 }
-.animatedDot:nth-child(1) {
-    animation: fallDown1 30s linear infinite;
+.animated-dot:nth-child(1) {
+    animation: fallDown1 60s linear infinite;
     width: 20vw;
 }
-.animatedDot:nth-child(2) {
-    animation: fallDown2 20s linear infinite;
-    top: 5vh;
-    width: 15vw;
-}
-.animatedDot:nth-child(3) {
-    animation: fallDown3 15s linear infinite;
-    width: 10vw;
+.animated-dot:nth-child(2) {
+    animation: fallDown2 30s linear infinite;
+    width: 5vw;
 }
 
 @keyframes fallDown1 {
@@ -224,13 +218,25 @@ main {
 }
 
 @keyframes fallDown2 {
-    from { transform: translate(-15vw); }
-    to { transform: translate(105vw); }
+    from { transform: translate(90vw, -5vw); }
+    to { transform: translate(90vw, 105vh); }
 }
 
-@keyframes fallDown3 {
-    from { transform: translate(85vw, -10vw); }
-    to { transform: translate(85vw, 105vh); }
+
+.animated-clock {
+    align-items: center;
+    animation: fallDownClockDot 45s linear infinite;
+    color: rgba(var(--base-font-color-NoAlpha), 0.35);
+    display: flex;
+    font-size: calc(var(--base-font-size) * 1.25);
+    justify-content: center;
+    letter-spacing: 0.25rem;
+    width: 12.5vw;
+}
+
+@keyframes fallDownClockDot {
+    from { transform: translate(75vw, -20vw); }
+    to { transform: translate(75vw, 105vh); }
 }
 
 

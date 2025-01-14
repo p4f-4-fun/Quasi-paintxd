@@ -17,7 +17,7 @@
 <body>
     <main>
         <section class="paint-color-picker">
-            <div class="paint-reset" aria-description="reset paint board" tabindex="0"></div>
+            <div class="paint-reset" aria-description="reset paint board" tabindex="0">new</div>
             <div class="color-box color-red" aria-description="pick color red" data-color="red" tabindex="0"></div>
             <div class="color-box color-green" aria-description="pick color green" data-color="green" tabindex="0"></div>
             <div class="color-box color-blue" aria-description="pick color blue" data-color="blue" tabindex="0"></div>
@@ -27,9 +27,9 @@
         <section class="paint-container"></section>
     </main>
     <aside class="animation-container">
-        <div class="animatedDot"></div>
-        <div class="animatedDot"></div>
-        <div class="animatedDot"></div>
+        <div class="animated-dot" aria-hidden="true"></div>
+        <div class="animated-dot" aria-hidden="true"></div>
+        <div class="animated-dot animated-clock">--:--:--</div>
     </aside>
     <script src="./app.js" defer></script>
 </body>

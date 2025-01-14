@@ -276,6 +276,23 @@ const bindEvents = () => {
     containerElement.addEventListener("click", pauseResumePainting);
 };
 
+const initClockWorker = () => {
+    const clockElement = document.querySelector(".animated-clock");
+    const clockWorker = new Worker("./clockWorker.js");
+
+    clockWorker.addEventListener("message", (Event) => {
+        if (!Event.data || typeof Event.data !== "string") {
+            clockElement.ariaHidden = true;
+            
+            console.error("Error in initClockbWorker(), received event data is not string");
+            return;
+        }
+
+        clockElement.textContent = Event.data;
+        clockElement.ariaDescription = `Actual time is ${Event.data}`;
+    });
+};
+
 const init = () => {
     createPaintBoard();
 
@@ -287,6 +304,9 @@ const init = () => {
 
     // Invoke events binding
     bindEvents();
+
+    // Init clock web worker
+    initClockWorker();
 };
 
 window.onload = init();
