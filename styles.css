@@ -1,0 +1,236 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+
+    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
+
+    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
+}
+
+:root {
+    --base-background-darkColor: 168,144,254; /* rgb */
+    --base-background-darkColor-alpha: 1;
+    --base-background-lightColor: 234,141,141; /* rgb */
+    --base-background-lightColor-alpha: 1;
+
+    --base-font-color: rgba(255,255,255, 1);
+    --base-font-color-NoAlpha: 255,255,255; /* rgb */
+    --base-font-size: 2.4rem;
+
+    /* CONST, do not ever change the name of this variable, JavaScript is using it! */
+    --base-paint-container-bg-color: rgba(252,140,111, 1);
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background: linear-gradient(
+        to top right, 
+        rgba( var(--base-background-lightColor), var(--base-background-lightColor-alpha) ), 
+        rgba( var(--base-background-darkColor), var(--base-background-darkColor-alpha) )
+    );
+    font-family: "Poppins", Tahoma, Verdana, sans-serif;
+    font-size: var(--base-font-size);
+    font-style: normal;
+    font-weight: 600;
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.paint-color-picker {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 65vh;
+    margin: 0 auto;
+    left: 15vw;
+    position: absolute;
+    top: 15vh;
+}
+
+.paint-reset::before {
+    display: block;
+    content: "new";
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);   
+}
+.paint-reset {
+    aspect-ratio: 1/1;
+    background-color: var(--base-paint-container-bg-color);
+    border-radius: 9999px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0, 0.25);
+    color: var(--base-font-color);
+    cursor: pointer;
+    height: 125px;
+    opacity: 0.95;
+    position: relative;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    width: 125px;
+}
+.paint-reset:hover,
+.paint-reset:active {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.25);
+    opacity: 1;
+    transform: scale(1.25) rotateZ(360deg);
+}
+.paint-reset:focus-visible {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.25);
+    border: 10px solid var(--base-font-color);
+    opacity: 1;
+    outline: none;
+    transform: scale(1.25) rotateZ(360deg);
+}
+
+.color-box {
+    aspect-ratio: 1/1;
+    border-radius: 9999px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0, 0.25);
+    cursor: pointer;
+    height: 50px;
+    opacity: 0.95;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    width: 50px;
+}
+.color-box.active,
+.color-box:hover,
+.color-box:focus-within,
+.color-box:focus,
+.color-box:active {
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.25);
+    opacity: 1;
+    transform: scale(1.5);
+}
+.color-box:focus-visible {
+    border: 10px solid var(--base-font-color);
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0, 0.25);
+    opacity: 1;
+    outline: none;
+    transform: scale(1.5);
+}
+
+.color-red {
+    background-color: red;
+}
+
+.color-green {
+    background-color: green;
+}
+
+.color-blue {
+    background-color: blue;
+}
+
+.color-white {
+    background-color: white;
+}
+
+.color-paint-board-container {
+    background-color: var(--base-paint-container-bg-color);
+}
+
+.paint-container::before {
+    background-color: var(--base-paint-container-bg-color);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+.paint-container {
+    aspect-ratio: 1/1;
+    clip-path: circle(50%);
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    height: 900px;
+    margin: 0 auto;
+    opacity: 0.8;
+    place-content: start;
+    width: 900px;
+}
+.paint-container.cursor-paint {
+    cursor: crosshair !important;
+}
+
+.block {
+    aspect-ratio: 1/1;
+    background-color: var(--base-paint-container-bg-color);
+    border-radius: 9999px;
+    border: none !important;
+    height: 10px;
+    outline: none !important;
+    transition: background-color 0.025s ease;
+    width: 10px;
+}
+
+
+/*-------------------------------------------------------*/
+/* Animations */
+/*-------------------------------------------------------*/
+
+.animation-container {
+    height: 100%;
+    width: 100%;
+}
+.animatedDot {
+    aspect-ratio: 1/1;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(to top right, rgba(var(--base-font-color-NoAlpha), 0.75), rgba(var(--base-background-darkColor), 0.5));
+    border-radius: 9999px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+.animatedDot:nth-child(1) {
+    animation: fallDown1 30s linear infinite;
+    width: 20vw;
+}
+.animatedDot:nth-child(2) {
+    animation: fallDown2 20s linear infinite;
+    top: 5vh;
+    width: 15vw;
+}
+.animatedDot:nth-child(3) {
+    animation: fallDown3 15s linear infinite;
+    width: 10vw;
+}
+
+@keyframes fallDown1 {
+    from { transform: translate(5vw, -20vw); }
+    to { transform: translate(5vw, 105vh); }
+}
+
+@keyframes fallDown2 {
+    from { transform: translate(-15vw); }
+    to { transform: translate(105vw); }
+}
+
+@keyframes fallDown3 {
+    from { transform: translate(85vw, -10vw); }
+    to { transform: translate(85vw, 105vh); }
+}
+
+
